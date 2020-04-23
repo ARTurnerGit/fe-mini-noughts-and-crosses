@@ -3,7 +3,11 @@ import "./App.css";
 import Battlefield from "./components/Battlefield";
 
 function App() {
-  return <Battlefield />;
+  return (
+    <div className="App">
+      <Battlefield />
+    </div>
+  );
 }
 
 export default App;

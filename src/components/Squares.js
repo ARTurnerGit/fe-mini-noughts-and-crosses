@@ -1,6 +1,6 @@
 import React from "react";
 
-function Squares({ handleClick }) {
+function Squares({ handleClick, board }) {
   const namedSquares = [];
   for (let i = 0; i < 9; i++) {
     namedSquares.push(
@@ -9,7 +9,10 @@ function Squares({ handleClick }) {
         onClick={handleClick}
         name={[i]}
         key={[i]}
-      ></button>
+        value={board[i]}
+      >
+        {board[i].toUpperCase()}
+      </button>
     );
   }
 

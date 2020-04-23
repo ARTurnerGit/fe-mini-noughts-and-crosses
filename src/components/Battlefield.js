@@ -5,26 +5,27 @@ class Battlefield extends React.Component {
   state = {
     board: ["", "", "", "", "", "", "", "", ""],
     gameIsOver: false,
-    isNoughtsGo: true,
+    isNoughtsTurn: true,
   };
 
   handleClick = (event) => {
     let indexToChange = parseInt(event.target.name);
-    let valueToAdd = this.state.isNoughtsGo ? "O" : "X";
+    let valueToAdd = this.state.isNoughtsTurn ? "O" : "X";
     this.setState((currentState) => {
       let gameBoard = [...currentState.board];
-      gameBoard[indexToChange] = valueToAdd;
-
-      return { board: gameBoard, isNoughtsGo: !currentState.isNoughtsGo };
+      if (gameBoard[indexToChange] === "") {
+        gameBoard[indexToChange] = valueToAdd;
+        return { board: gameBoard, isNoughtsTurn: !currentState.isNoughtsTurn };
+      }
     });
   };
 
   render() {
-    console.log(this.state.board);
+    console.log("rendering...");
     return (
-      <div>
+      <div className="battlefield">
         <h1>BATTLEFIELD</h1>
-        <Squares handleClick={this.handleClick} />
+        <Squares handleClick={this.handleClick} board={this.state.board} />
       </div>
     );
   }
