@@ -1,12 +1,12 @@
 import React from "react";
 
-function Squares({ handleClick, board }) {
+function Squares({ handleBoardClick, board }) {
   const namedSquares = [];
   for (let i = 0; i < 9; i++) {
     namedSquares.push(
       <button
         className="grid-element"
-        onClick={handleClick}
+        onClick={handleBoardClick}
         name={[i]}
         key={[i]}
         value={board[i]}
