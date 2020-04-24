@@ -1,6 +1,7 @@
 import React from "react";
 import Squares from "./Squares";
 import Resetbutton from "./Resetbutton";
+import Winnermessage from "./Winnermessage";
 
 class PlayingArea extends React.Component {
   state = {
@@ -15,19 +16,20 @@ class PlayingArea extends React.Component {
     let indexToChange = parseInt(event.target.name);
     let valueToAdd = this.state.isNoughtsTurn ? "O" : "X";
 
-    this.setState((currentState) => {
-      let gameBoard = [...currentState.board];
-      if (gameBoard[indexToChange] === "") {
-        gameBoard[indexToChange] = valueToAdd;
-        return gameBoard.includes("")
-          ? { board: gameBoard, isNoughtsTurn: !currentState.isNoughtsTurn }
-          : {
-              board: gameBoard,
-              isNoughtsTurn: !currentState.isNoughtsTurn,
-              gameIsOver: !currentState.gameIsOver,
-            };
-      }
-    });
+    !this.state.gameIsOver &&
+      this.setState((currentState) => {
+        let gameBoard = [...currentState.board];
+        if (gameBoard[indexToChange] === "") {
+          gameBoard[indexToChange] = valueToAdd;
+          return gameBoard.includes("")
+            ? { board: gameBoard, isNoughtsTurn: !currentState.isNoughtsTurn }
+            : {
+                board: gameBoard,
+                isNoughtsTurn: !currentState.isNoughtsTurn,
+                gameIsOver: !currentState.gameIsOver,
+              };
+        }
+      });
   };
 
   handleResetClick = () => {
@@ -110,6 +112,9 @@ class PlayingArea extends React.Component {
     console.log(this.state.winningIndices);
     return (
       <div className="playing-area">
+        {this.state.gameIsOver && (
+          <Winnermessage winnerIs={this.state.winnerIs} />
+        )}
         <Squares
           handleBoardClick={this.handleBoardClick}
           board={this.state.board}
