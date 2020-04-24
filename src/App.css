@@ -26,6 +26,19 @@
   background-color: black;
   font-size: 5vh;
   color: white;
+  animation-name: button-entry;
+  animation-duration: 1.5s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes button-entry {
+  from {
+    bottom: -10vh;
+  }
+  to {
+    bottom: -1px;
+  }
 }
 
 button:focus {
