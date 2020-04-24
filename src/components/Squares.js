@@ -1,11 +1,15 @@
 import React from "react";
 
-function Squares({ handleBoardClick, board }) {
+function Squares({ handleBoardClick, board, winningIndices }) {
   const namedSquares = [];
   for (let i = 0; i < 9; i++) {
     namedSquares.push(
       <button
-        className="grid-element"
+        className={
+          winningIndices.includes(i)
+            ? "grid-element winning-square"
+            : "grid-element losing-square"
+        }
         onClick={handleBoardClick}
         name={[i]}
         key={[i]}

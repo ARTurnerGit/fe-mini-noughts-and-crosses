@@ -64,3 +64,11 @@ button:focus {
   font-size: 100px;
   font-weight: 1000;
 }
+
+.winning-square {
+  color: green;
+}
+
+.losing-square {
+  color: lightgrey;
+}
